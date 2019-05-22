@@ -9,17 +9,15 @@ defmodule RNATranscription do
   """
   @spec to_rna([char]) :: [char]
   def to_rna(dna) do
-    dna
-    |> Enum.map(&RNATranscription.complement/1)
-    |> Enum.concat
-  end
+    equivalents = %{
+      'G' => 'C',
+      'C' => 'G',
+      'T' => 'A',
+      'A' => 'U'
+    }
 
-  def complement(char) do
-    case [char] do
-      'G' -> 'C'
-      'C' -> 'G'
-      'T' -> 'A'
-      'A' -> 'U'
-    end
+    Enum.reduce(dna, [], fn(letter, acc) ->
+      acc ++ Map.get(equivalents, [letter])
+    end)
   end
 end
