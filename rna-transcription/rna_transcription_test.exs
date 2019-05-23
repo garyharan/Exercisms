@@ -24,7 +24,6 @@ defmodule RNATranscriptionTest do
     assert RNATranscription.to_rna('A') == 'U'
   end
 
-  @tag :pending
   test "it transcribes all dna nucleotides to rna equivalents" do
     assert RNATranscription.to_rna('ACGTGGTCTTAA') == 'UGCACCAGAAUU'
   end
