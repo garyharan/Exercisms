@@ -15,15 +15,15 @@ defmodule RotationalCipher do
     |> to_string
   end
 
-  def rotate_char(code, _shift) when code in ' \',.!1234567890' do
-    code
-  end
-
   def rotate_char(code, shift) when code in ?A..?Z do
     rem(code + shift - ?A, 26) + ?A
   end
 
   def rotate_char(code, shift) when code in ?a..?z do
     rem(code + shift - ?a, 26) + ?a
+  end
+
+  def rotate_char(code, _shift) do
+    code
   end
 end
