@@ -7,13 +7,14 @@ defmodule RotationalCipher do
   "Nggnpx ng qnja"
   """
   @spec rotate(text :: String.t(), shift :: integer) :: String.t()
-
   def rotate(text, shift) do
     text
     |> to_charlist
     |> Enum.map(fn code -> rotate_char(code, shift) end)
     |> to_string
   end
+
+  def rotate_char(code, 0), do: code
 
   def rotate_char(code, shift) when code in ?A..?Z do
     rem(code + shift - ?A, 26) + ?A
@@ -23,7 +24,5 @@ defmodule RotationalCipher do
     rem(code + shift - ?a, 26) + ?a
   end
 
-  def rotate_char(code, _shift) do
-    code
-  end
+  def rotate_char(code, _shift), do: code
 end
