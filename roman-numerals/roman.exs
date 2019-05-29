@@ -23,15 +23,15 @@ defmodule Roman do
     romanize(number, "", @mapping)
   end
 
-  def romanize(number, roman_number, [{arabic_value, roman_value} | _tail] = mapping) when number >= arabic_value do
+  defp romanize(number, roman_number, [{arabic_value, roman_value} | _tail] = mapping) when number >= arabic_value do
     romanize(number - arabic_value, roman_number <> roman_value, mapping)
   end
 
-  def romanize(number, roman_number, [_head | tail]) do
+  defp romanize(number, roman_number, [_head | tail]) do
     romanize(number, roman_number, tail)
   end
 
-  def romanize(_number, roman_number, []) do
+  defp romanize(_number, roman_number, []) do
     roman_number
   end
 end
